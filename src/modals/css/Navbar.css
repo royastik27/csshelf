@@ -1,0 +1,15 @@
+#main-nav {
+    margin: 1rem;
+}
+
+#main-nav a {
+    margin-top: 10rem;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    text-decoration: none;
+    color: white;
+}
+
+#main-nav a:hover {
+    background-color: magenta;
+}
