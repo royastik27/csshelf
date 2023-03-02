@@ -1,0 +1,11 @@
+#note-form {
+    background-color: inherit;
+}
+
+#note-form * {
+    color: white;
+}
+
+#note-form button {
+    margin-bottom: 0.5rem;
+}

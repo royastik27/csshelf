@@ -6,8 +6,8 @@ function Navbar() {
     return (
         <nav id="main-nav">
             <Link to="/">📚 HOME</Link>
+            <Link to="/notes">📄 NOTES</Link>
             <Link to="/create">✍ CREATE</Link>
-            <Link to="/view">🧐 VIEW</Link>
         </nav>
     );
   }
