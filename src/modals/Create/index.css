@@ -1,11 +1,16 @@
-#note-form {
+#note-form, #view-panel {
     background-color: inherit;
 }
 
-#note-form * {
+#note-form *, #view-panel {
     color: white;
 }
 
 #note-form button {
     margin-bottom: 0.5rem;
+}
+
+#view-panel {
+    margin-bottom: 1rem;
+    padding: 1rem;
 }

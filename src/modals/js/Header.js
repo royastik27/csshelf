@@ -7,6 +7,6 @@ function Header() {
         <i>The Ultimate Computer Science Shelf</i>
       </div>
     );
-  }
+}
   
 export default Header;

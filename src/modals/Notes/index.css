@@ -1,0 +1,12 @@
+.posts-footer * {
+    display: inline;
+}
+
+.posts-footer .left {
+    float: left;
+}
+
+.posts-footer .right {
+    float: right;
+    margin-right: 0.5rem;
+}
