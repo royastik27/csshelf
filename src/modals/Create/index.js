@@ -1,6 +1,9 @@
 import React from 'react';
 import { Card, TextField, Typography, Button } from '@mui/material';
 
+import InputLabel from '@mui/material/InputLabel';
+import Autocomplete from '@mui/material/Autocomplete';
+
 import './index.css';
 
 function update_view()
@@ -32,6 +35,16 @@ class Create extends React.Component {
                 </Typography>
 
                 <TextField id="note-title" label="Note Title" variant="outlined" fullWidth/>
+                <br /><br />
+
+                {/* SELECT COLLECTION */}
+                <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    options={top100Films}
+                    sx={{ maxWidth: 400 }}
+                    renderInput={(params) => <TextField {...params} label="Collection" />}
+                />
                 <br /><br />
 
                 <TextField
@@ -76,5 +89,11 @@ class Create extends React.Component {
         );
     }
 };
+
+const top100Films = [
+    "Discrete Mathematics",
+    "Algorithm",
+    "Digital System",
+  ];  
 
 export default Create;

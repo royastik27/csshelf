@@ -8,6 +8,8 @@ function Navbar() {
             <Link to="/">📚 HOME</Link>
             <Link to="/notes">📄 NOTES</Link>
             <Link to="/create">✍ CREATE</Link>
+            <Link to="/login">👤 LOGIN</Link>
+            <Link to="/signup">📁 SIGNUP</Link>
         </nav>
     );
   }

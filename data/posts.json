@@ -1,14 +1,23 @@
 [
     {
-        "author": "royastik27",
-        "content": "Hi everybody!"
+        "title": "First Post",
+        "authors": "royastik27",
+        "content": "Hi everybody!",
+        "nVotes": 133,
+        "nDiscussions": 15
     },
     {
-        "author": "royastik27",
-        "content": "Hi again!"
+        "title": "Second Post",
+        "authors": "royastik27",
+        "content": "Once more!",
+        "nVotes": 100,
+        "nDiscussions": 10
     },
     {
-        "author": "royastik27",
-        "content": "Bye for now ;)"
+        "title": "Third Post",
+        "authors": "royastik27",
+        "content": "Bye for now",
+        "nVotes": 20,
+        "nDiscussions": 313
     }
 ]

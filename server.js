@@ -1,13 +1,32 @@
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
+const mongoose = require('mongoose');
 
 const app = express();
 const PORT = 5000;
 
 app.use(cors());
+app.use(express.json());
 
-app.get('/', (req, res) => {
+// ROUTES
+const userModel = require('./data/userSchema');
+
+app.post('/api/adduser', async (req, res) => {
+
+    const newUser = new userModel(req.body);
+
+    try {
+        const result = await newUser.save();
+        res.send(result);
+    }
+    catch(err) {
+        console.log(err);
+        res.status(500).send('Something went wrong!');
+    }
+});
+
+app.get('/api/notes', (req, res) => {
 
     try {
         const posts = fs.readFileSync('./data/posts.json', 'utf-8');
@@ -24,7 +43,18 @@ app.get('/', (req, res) => {
     }
 });
 
-app.listen(PORT, err => {
-    if (err) console.log("Error in server setup!")
-    console.log("Server is running..");
+
+// DATABASE AND SERVER
+const DB_URL = 'mongodb://localhost:27017/csshelf';
+
+mongoose.connect(DB_URL).then(() => {
+    console.log('Database connected');
+
+    app.listen(PORT, err => {
+        if (err) console.log("Error in server setup!")
+        console.log("Server is running..");
+    });
+}).catch(err => {
+    console.log(err);
 });
+

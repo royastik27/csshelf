@@ -1,12 +1,12 @@
-.posts-footer * {
+.note-footer * {
     display: inline;
 }
 
-.posts-footer .left {
+.note-footer .left {
     float: left;
 }
 
-.posts-footer .right {
+.note-footer .right {
     float: right;
     margin-right: 0.5rem;
 }
