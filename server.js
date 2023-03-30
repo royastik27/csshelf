@@ -4,7 +4,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 
 const app = express();
-const PORT = 5000;
+const PORT = 5000;  // make it 3000
 
 app.use(cors());
 app.use(express.json());
@@ -51,10 +51,10 @@ mongoose.connect(DB_URL).then(() => {
     console.log('Database connected');
 
     app.listen(PORT, err => {
-        if (err) console.log("Error in server setup!")
-        console.log("Server is running..");
+        if (err) console.log("Error in server setup!");
+        else console.log("Server is running..");
     });
 }).catch(err => {
-    console.log(err);
+    console.log('err');
 });
 

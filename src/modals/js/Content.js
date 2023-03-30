@@ -6,6 +6,8 @@ import Home from './../Home/index';
 import Create from './../Create/index';
 import Notes from './../Notes/index';
 import Note from './../Note/index';
+import Login from './../Login/index';
+import Signup from './../Signup/index';
 import NoPage from './../NoPage/index';
 
 function Content() {
@@ -18,6 +20,8 @@ function Content() {
               <Route index element={<Notes />} />
               <Route path="single" element={<Note />} />
             </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
         </div>
