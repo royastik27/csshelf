@@ -5,10 +5,10 @@ const userSchema = new mongoose.Schema(
         userName: String,
         email: String,
         password: String,
-        birthDate: Date,
+        birthDate: String,
         gender: String,
-        institution: String,
-        phoneNumber: String
+        institution: String
+        // phoneNumber: String
     }, {
         versionKey: false
     }

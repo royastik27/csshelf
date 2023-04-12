@@ -1,21 +1,51 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
+
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
+
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 import './index.css';
 
 function Signup() {
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
       event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      console.log({
+
+      const data = new FormData(event.currentTarget); // actually event.target is null, It has property called even.target which is the FORM DOM. Fix this issue latar.
+
+      const bodyData = JSON.stringify({
+        userName: data.get('userName'),
         email: data.get('email'),
         password: data.get('password'),
+        birthDate: data.get('birthDate'),
+        gender: data.get('gender'),
+        institution: data.get('institution'),
       });
+      
+      try {
+        const res = await fetch('http://localhost:5000/api/adduser', {
+              method: "POST",
+              // mode: 'cors',
+              headers: {
+                'Content-type': 'application/json'
+              },
+              body: bodyData
+        });
+        console.log(res);
+      }
+      catch(err) {
+        // console.log('Something wrong');
+        console.log(err);
+      }
     };
     
   return (
@@ -50,15 +80,37 @@ function Signup() {
           name="password"
           type="password"
           id="password"
-        />
+        /><br></br>
 
+        <InputLabel>Birthdate:</InputLabel>
         <TextField
           margin="normal"
           fullWidth
-          label="Birthdate"
           name="birthDate"
           type="date"
           id="birthDate"
+        />
+        
+        {/* GENDER */}
+        <InputLabel>Gender</InputLabel>
+        <RadioGroup
+          row
+          aria-labelledby="demo-radio-buttons-group-label"
+          defaultValue="male"
+          name="gender"
+        >
+          <FormControlLabel value="female" control={<Radio />} label="Female" />
+          <FormControlLabel value="male" control={<Radio />} label="Male" />
+          <FormControlLabel value="other" control={<Radio />} label="Other" />
+        </RadioGroup>
+
+        {/* INSTITUTION */}
+        <TextField
+          margin="normal"
+          fullWidth
+          label="Institution"
+          name="institution"
+          id="institution"
         />
 
         <Button

@@ -4,7 +4,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 
 const app = express();
-const PORT = 5000;  // make it 3000
+const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -15,6 +15,7 @@ const userModel = require('./data/userSchema');
 app.post('/api/adduser', async (req, res) => {
 
     const newUser = new userModel(req.body);
+    console.log(req.body);
 
     try {
         const result = await newUser.save();
@@ -24,6 +25,28 @@ app.post('/api/adduser', async (req, res) => {
         console.log(err);
         res.status(500).send('Something went wrong!');
     }
+});
+
+app.post('/api/login', async (req, res) => {
+
+    console.log(req.body);
+
+    userModel.findOne({
+        'userName': req.body.userName
+    }).then(result => {
+        if(result)
+            res.status(200).json({
+                acknowledgement: true, message: 'User registered successfully!'
+            });
+        else
+            throw { message: 'User not found!' };
+    }).catch(err => {
+        // console.log(err);
+        res.status(500).json({
+            acknowledgement: false,
+            message: err.message
+        })
+    });
 });
 
 app.get('/api/notes', (req, res) => {
