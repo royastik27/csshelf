@@ -43,8 +43,8 @@ function Signup() {
         console.log(res);
       }
       catch(err) {
-        // console.log('Something wrong');
-        console.log(err);
+        console.log('Failed to fetch data from server');
+        // console.log(err);
       }
     };
     

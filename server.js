@@ -1,8 +1,15 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs');
 const mongoose = require('mongoose');
 
+// CONTROLLERS
+const userController = require('./controllers/userController');
+const noteController = require('./controllers/noteController');
+
+// CONFIGURATION
 const app = express();
 const PORT = 5000;
 
@@ -10,60 +17,20 @@ app.use(cors());
 app.use(express.json());
 
 // ROUTES
-const userModel = require('./data/userSchema');
+app.post('/api/register', userController.register);
+app.post('/api/login', userController.login);
 
-app.post('/api/adduser', async (req, res) => {
+app.get('/api/notes', noteController.allNotes);
 
-    const newUser = new userModel(req.body);
-    console.log(req.body);
+function authorize(req, res, next) {
+    const token = req.headers;
+    console.log(token);
+    console.log(typeof token);
+    next();
+}
 
-    try {
-        const result = await newUser.save();
-        res.send(result);
-    }
-    catch(err) {
-        console.log(err);
-        res.status(500).send('Something went wrong!');
-    }
-});
-
-app.post('/api/login', async (req, res) => {
-
-    console.log(req.body);
-
-    userModel.findOne({
-        'userName': req.body.userName
-    }).then(result => {
-        if(result)
-            res.status(200).json({
-                acknowledgement: true, message: 'User registered successfully!'
-            });
-        else
-            throw { message: 'User not found!' };
-    }).catch(err => {
-        // console.log(err);
-        res.status(500).json({
-            acknowledgement: false,
-            message: err.message
-        })
-    });
-});
-
-app.get('/api/notes', (req, res) => {
-
-    try {
-        const posts = fs.readFileSync('./data/posts.json', 'utf-8');
-
-        // console.log(JSON.parse(posts));
-        // console.log(typeof JSON.parse(posts));  // object
-
-        res.json(JSON.parse(posts));
-    }
-    catch(err)
-    {
-        console.log(err);
-        res.json({ message: "Data not found!" })
-    }
+app.get('/api/mycollections', authorize, (req, res) => {    
+    res.json({ message: 'hello' });
 });
 
 
@@ -78,6 +45,6 @@ mongoose.connect(DB_URL).then(() => {
         else console.log("Server is running..");
     });
 }).catch(err => {
-    console.log('err');
+    console.log(err);
 });
 
