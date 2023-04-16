@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const userModel = require('./../data/userSchema');
 
-module.exports.register = async (req, res) => {
+exports.register = async (req, res) => {
 
     // check if the user already exists
     try {
@@ -15,6 +15,7 @@ module.exports.register = async (req, res) => {
         // if not found, then result = null
 
         if(result) {
+            console.log(result);
             res.json({
                 ok: false,
                 message: 'Username or email already registered'
@@ -39,12 +40,13 @@ module.exports.register = async (req, res) => {
         res.json({ ok: true, message: 'User created!'});
     }
     catch(err) {
-        // console.log(err);
-        res.status(500).json({ ok: false, message: 'Internal server problem #2'});
+        // if(err.errors['email']) console.log(err.errors['email'].message);
+        res.status(500).json({ ok: false, message: err.message });
+        // res.status(500).json({ ok: false, message: 'Invalid input or Server Problem' });
     }
 }
 
- module.exports.login = async (req, res) => {
+exports.login = async (req, res) => {
 
     userModel.findOne({
         'userName': req.body.userName
@@ -53,6 +55,7 @@ module.exports.register = async (req, res) => {
         if(result)
             if(req.body.password === result.password)
             {
+                console.log(result);
                 // code here
                 const user = { userName: req.body.userName };
 

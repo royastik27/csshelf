@@ -1,9 +1,0 @@
-### Request Astik
-POST http://localhost:5000/api/register
-Content-Type: application/json
-Token: abasdfd
-
-{
-    "userName": "viringi",
-    "email": "viringi@gmail.com"
-}

@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-module.exports.allNotes = (req, res) => {
+exports.allNotes = (req, res) => {
 
     try {
         const posts = fs.readFileSync('./data/posts.json', 'utf-8');
