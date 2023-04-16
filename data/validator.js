@@ -30,6 +30,44 @@ exports.email = function(email) {
 };
 
 // PASSWORD VALIDATOR
+const specialChars = [ '@', '*', '#', '&', '?', '!' ];
+
 exports.password = function(password) {
-    return (password.length >= 8);
+
+    let len = password.length, specialChar, digit, upperCase, lowerCase;
+
+    // AT LEAST 8 CHARACTERS
+    if(len < 8) return false;
+
+    specialChar = digit = upperCase = lowerCase = others = false;
+
+    let i, j, specialCharsLen = specialChars.length, ch;
+
+    for(i = 0; i < len; ++i)
+    {
+        ch = password[i];
+
+        // FOR SPECIAL CHARACTER
+        for(j = 0; j < specialCharsLen; ++j)
+            if(ch === specialChars[j])
+                { specialChar = true; break; }
+        
+        if(j < specialCharsLen)
+            continue;
+
+        // FOR DIGIT
+        if(ch >= '0' && ch <= '9')
+            digit = true;
+        // FOR ALPHABETS (LOWERCASE & UPPERCASE)
+        else if(ch >= 'A' && ch <= 'Z')
+            upperCase = true;
+        else if(ch >= 'a' && ch <= 'z')
+            lowerCase = true;
+        else
+            others = true;
+    }
+
+    // console.log(`${others}, ${upperCase}, ${lowerCase}, ${digit}, ${specialChar}`);
+
+    return (!others && upperCase && lowerCase && digit && specialChar);
 }

@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema(
         password: {
             type: String,
             required: true,
-            validate: [ validator.password, 'Uh oh, try strong password!' ]
+            validate: [ validator.password, 'Uh oh, try stronger password!' ]
         },
         birthDate: String,
         gender: String,
