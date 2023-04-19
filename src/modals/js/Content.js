@@ -12,7 +12,7 @@ import NoPage from './../NoPage/index';
 
 function Content() {
     return (
-        <div id="content">
+        <div id="content" className="col-lg-9">
           <Routes>
             <Route index element={<Home />} />
             <Route path="/create" element={<Create />} />

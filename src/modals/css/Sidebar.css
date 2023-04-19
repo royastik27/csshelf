@@ -1,3 +1,24 @@
-#sidebar {
-    /* float: right; */
+#sidebar .card {
+    margin-bottom: 0.5rem;
+}
+
+#sidebar .card-title{
+    padding-bottom: 0.3rem;
+    text-align: center;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+#sidebar .sidebar-link {
+    display: block;
+    padding: 0.3rem;
+    color: black;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    border-radius: 0.3rem;
+    background-color: #F7F7F9;
+}
+
+#sidebar .sidebar-link:hover {
+    color: white;
+    background-color: darkcyan !important;
 }

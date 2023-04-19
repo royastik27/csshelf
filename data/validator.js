@@ -30,7 +30,7 @@ exports.email = function(email) {
 };
 
 // PASSWORD VALIDATOR
-const specialChars = [ '@', '*', '#', '&', '?', '!' ];
+const specialChars = [ '@', '*', '#', '$', '&', '?', '!' ];
 
 exports.password = function(password) {
 

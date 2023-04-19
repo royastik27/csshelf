@@ -5,27 +5,28 @@ import '@fontsource/roboto/700.css';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+// BOOTSTRAP
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/js/bootstrap.min.js";
+
 import './App.css';
 
 import Header from './modals/js/Header';
 import Navbar from './modals/js/Navbar';
 import MainContent from './modals/js/MainContent';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
+// const darkTheme = createTheme({
+//   palette: {
+//     mode: 'dark',
+//   },
+// });
 
 function App() {
   return (
-    <ThemeProvider theme={darkTheme}>
       <div id="main">
-        <Header />
         <Navbar />
         <MainContent />
       </div>
-    </ThemeProvider>
   );
 }
 

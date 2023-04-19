@@ -5,9 +5,11 @@ import Sidebar from './Sidebar';
 
 function MainContent() {
     return (
-        <div id="main-content">
-            <Content />
-            <Sidebar />
+        <div id="main-content" className="container-fluid">
+            <div className="row">
+                <Content />
+                <Sidebar />
+            </div>
         </div>
     );
   }

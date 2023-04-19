@@ -1,15 +1,34 @@
 #main-nav {
-    margin: 1rem;
+    margin: 0 0 1rem 0;
+    padding: 0.7rem;    
+    box-shadow: 0 4px 2px -2px gray;
 }
 
-#main-nav a {
-    margin-top: 10rem;
-    padding: 0.5rem 1rem;
+#main-nav .navbar-brand {
+    font-weight: 600;
+    margin-right: 2rem;
+}
+
+#main-nav .nav-item {
     margin-right: 1rem;
-    text-decoration: none;
-    color: white;
 }
 
-#main-nav a:hover {
-    background-color: magenta;
+#main-nav .nav-link {
+    font-weight: 600;
+}
+
+#main-nav .nav-link:hover {
+    font-weight: bold;
+}
+
+#main-nav .nav-link.active {
+    font-weight: bold;
+}
+
+#nav-search-box input {
+    font-size: 1rem;
+}
+
+#nav-search-box input:focus {
+    /* outline: 0.2rem; */
 }
