@@ -1,74 +1,85 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import './index.css';
+
+async function logIn(inp)
+{
+  try {
+    const res = await fetch('http://localhost:5000/api/login', {
+      method: "POST",
+      // mode: 'cors',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(inp)
+    });
+
+    const output = await res.json();
+    return output;
+  }
+  catch (err) {
+    console.log(err);
+
+    return { ok: false, message: 'Server problem!' };
+  }
+}
 
 function Login() {
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
-        });
-    };
+  const [ errorMessage, setErrorMessage ] = useState('');
+
+  async function handleSubmit(event) {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+
+      const inp = {
+        userName: data.get('userName'),
+        password: data.get('password'),
+        remember: data.get('remember')
+      }
+      
+      const res = await logIn(inp);
+      setErrorMessage(res.message);
+      // set cookie
+      if(res.ok)
+        localStorage.setItem('token', res.token);
+  };
     
     return (
         <div>
             <h2 style={{ textAlign: 'center' }}>👤 Login</h2>
             <hr></hr>
 
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ m: 'auto', maxWidth: 400 }}>
+            <form onSubmit={handleSubmit} id="login-form" className="m-auto col-lg-6">
 
-            <TextField
-              margin="normal"
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
+              <div className="form-group">
+                <label>Username:</label>
+                <input name="userName" type="text" className="form-control" placeholder="Enter your CSSHELF username" required />
+              </div>
 
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+              <div className="form-group">
+                <label>Password:</label>
+                <input name="password" type="password" className="form-control" placeholder="Enter your CSSHELF password" required />
+              </div>
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Login
-            </Button>
+              <div className="form-group">
+                <div className="form-check">
+                  <input name="remember" value="remember" type="checkbox"
+                  className="form-check-input" />
+                  <label className="form-check-label">Remember Me</label>
+                </div>
+              </div>
+
+              <p className="text-success">{errorMessage}</p>
+
+              <button type="submit" className="btn btn-primary w-100">Log In</button>
+              <br /><br />
+
+              <Link to="">Forgot password?</Link><br />
+              <Link to="/signup">Don't have an account? Sign Up</Link>
             
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
+          </form>
         </div>
     );
   }

@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const userModel = require('./../data/userSchema');
 
@@ -51,29 +52,36 @@ exports.login = async (req, res) => {
     userModel.findOne({
         'userName': req.body.userName
     })
-    .then(result => {
-        if(result)
-            if(req.body.password === result.password)
-            {
+    .then(async function (result) {
+        if (result)
+            if (await bcrypt.compare(req.body.password, result.password)) {
+                // WHEN TO brypt
                 console.log(result);
-                // code here
-                const user = { userName: req.body.userName };
+
+                const user = {
+                    id: result._id,
+                    userName: req.body.userName
+                };
+
+                res.cookie('token', jwt.sign(user, process.env.ACCESS_TOKEN), { httpOnly: true });
 
                 res.status(200).json({
                     ok: true,
-                    message: 'Logged in!',
-                    token: jwt.sign(user, process.env.ACCESS_TOKEN)
+                    message: 'Logged in!'
+                    // token: jwt.sign(user, process.env.ACCESS_TOKEN) // DONT SEND
                 });
             }
+
             else
                 res.status(200).json({ ok: true, message: 'Incorrect password' });
+
         else
             res.status(200).json({ ok: true, message: 'User not found!' });
     })
     .catch(err => {
-        // console.log(err);
+        console.log(err);
         res.status(500).json({
-            acknowledgement: false,
+            ok: false,
             message: err.message
         });
     });

@@ -1,10 +1,14 @@
 ### Request Astik
-POST http://localhost:5000/api/register
+GET http://localhost:5000/
 Content-Type: application/json
 Token: abasdfd
 
 {
-    "userName": "iuanft ",
-    "email": "anftiu@gmail.com",
-    "password": "anft123@#A"
+    "userName": "DJango",
+    "email": "d.jango@gmail.com",
+    "password": "djagoPy123#"
 }
+
+# buet_cse
+# cse_buet@gmail.com
+# csebuet#@12B

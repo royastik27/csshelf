@@ -4,6 +4,8 @@ dotenv.config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
+const cookieParser = require('cookie-parser');
 
 // CONTROLLERS
 const userController = require('./controllers/userController');
@@ -15,6 +17,13 @@ const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
+
+// app.use((req, res, next) => {
+//     console.log(req.url);
+//     console.log(req.cookies);
+//     next();
+// })
 
 // ROUTES
 app.post('/api/register', userController.register);
@@ -33,6 +42,10 @@ app.get('/api/mycollections', authorize, (req, res) => {
     res.json({ message: 'hello' });
 });
 
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build/index.html'));
+});
 
 // DATABASE AND SERVER
 const DB_URL = 'mongodb://localhost:27017/csshelf';

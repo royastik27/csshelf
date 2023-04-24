@@ -9,6 +9,7 @@ import Note from './../Note/index';
 import Login from './../Login/index';
 import Signup from './../Signup/index';
 import NoPage from './../NoPage/index';
+import Profile from './../Profile/index';
 
 function Content() {
     return (
@@ -22,6 +23,7 @@ function Content() {
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
         </div>

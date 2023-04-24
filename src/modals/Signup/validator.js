@@ -1,7 +1,8 @@
-// EMAIL VALIDATOR
+const validator = {};
+
 const verifiedMails = [ 'gmail', 'yahoo', 'hotmail' ];
 
-exports.email = function(email) {
+validator.checkEmail = function(email) {
 
     let i, len = email.length, provider = "";
     
@@ -29,24 +30,22 @@ exports.email = function(email) {
     return false;
 };
 
-// PASSWORD VALIDATOR
 const specialChars = [ '@', '*', '#', '$', '&', '?', '!' ];
 
-exports.password = function(password) {
-
+validator.checkPassword = (password) => {
     let len = password.length, specialChar, digit, upperCase, lowerCase, others;
-
+  
     // AT LEAST 8 CHARACTERS
     if(len < 8) return false;
-
+  
     specialChar = digit = upperCase = lowerCase = others = false;
-
+  
     let i, j, specialCharsLen = specialChars.length, ch;
-
+  
     for(i = 0; i < len; ++i)
     {
         ch = password[i];
-
+  
         // FOR SPECIAL CHARACTER
         for(j = 0; j < specialCharsLen; ++j)
             if(ch === specialChars[j])
@@ -54,7 +53,7 @@ exports.password = function(password) {
         
         if(j < specialCharsLen)
             continue;
-
+  
         // FOR DIGIT
         if(ch >= '0' && ch <= '9')
             digit = true;
@@ -66,8 +65,10 @@ exports.password = function(password) {
         else
             others = true;
     }
-
+  
     // console.log(`${others}, ${upperCase}, ${lowerCase}, ${digit}, ${specialChar}`);
-
+  
     return (!others && upperCase && lowerCase && digit && specialChar);
-}
+  }
+
+  export default validator;

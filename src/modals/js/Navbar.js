@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 import './../css/Navbar.css';
-import { ConnectingAirportsOutlined } from '@mui/icons-material';
 
 // MAKING LINK ACTIVE
 function makeLinkActive(event) {
