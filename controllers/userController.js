@@ -59,11 +59,16 @@ exports.login = async (req, res) => {
                 console.log(result);
 
                 const user = {
-                    id: result._id,
+                    userId: result._id,
                     userName: req.body.userName
                 };
 
-                res.cookie('token', jwt.sign(user, process.env.ACCESS_TOKEN), { httpOnly: true });
+                res.cookie('token', jwt.sign(user, process.env.ACCESS_TOKEN), { 
+                    httpOnly: true,
+                    expires: new Date(Date.now() + 60000)
+                });
+
+                // res.redirect('/profile');
 
                 res.status(200).json({
                     ok: true,
@@ -85,4 +90,22 @@ exports.login = async (req, res) => {
             message: err.message
         });
     });
+}
+
+exports.authorize = async (req, res) => {
+    
+    const token = req.cookies.token;
+
+    try {
+        const decode = jwt.verify(token, process.env.ACCESS_TOKEN);
+
+        res.json({
+            ok: true,
+            userId: decode.userId,
+            userName: decode.userName
+        });
+    }
+    catch(err) {
+        res.json({ ok: false });
+    }
 }

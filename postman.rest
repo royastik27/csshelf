@@ -1,12 +1,13 @@
 ### Request Astik
-GET http://localhost:5000/
+POST http://localhost:5000/api/auth
 Content-Type: application/json
 Token: abasdfd
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDUyMjRmNDM5YTJhNTQwZTI2NzYyNjEiLCJ1c2VyTmFtZSI6ImJ1ZXRfY3NlIiwiaWF0IjoxNjgzMTEzNTEzfQ.MG0de9XTDIqqEG8oM6-_tAh3hx7GPNFITm2zZdK_JgM
 
 {
-    "userName": "DJango",
+    "userName": "buet_cse",
     "email": "d.jango@gmail.com",
-    "password": "djagoPy123#"
+    "password": "csebuet#@12B"
 }
 
 # buet_cse

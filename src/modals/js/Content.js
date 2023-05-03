@@ -10,8 +10,9 @@ import Login from './../Login/index';
 import Signup from './../Signup/index';
 import NoPage from './../NoPage/index';
 import Profile from './../Profile/index';
+import Logout from './../Logout/index';
 
-function Content() {
+function Content({ loggedIn, setLoggedIn }) {
     return (
         <div id="content" className="col-lg-9">
           <Routes>
@@ -21,9 +22,10 @@ function Content() {
               <Route index element={<Notes />} />
               <Route path="single" element={<Note />} />
             </Route>
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile loggedIn={loggedIn}/>} />
+            <Route path="/logout" element={<Logout loggedIn={loggedIn}/>} />
             <Route path="*" element={<NoPage />} />
           </Routes>
         </div>

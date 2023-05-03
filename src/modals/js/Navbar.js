@@ -15,7 +15,7 @@ function makeLinkActive(event) {
 }
 
 // NAVBAR COMPONENT
-function Navbar() {
+function Navbar({ loggedIn }) {
 
     return (
         <nav id="main-nav" className="navbar navbar-expand-lg">
@@ -49,7 +49,8 @@ function Navbar() {
                     <Link className="nav-link" to="/signup" onClick={makeLinkActive}>📁 SIGNUP</Link>
                     </li>
 
-                    <li className="nav-item dropdown">
+                    {loggedIn && 
+                        <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             ⚙ MY ACCOUNT
                         </a>
@@ -60,6 +61,7 @@ function Navbar() {
                             <li><Link className="dropdown-item" to="/logout">Log Out</Link></li>
                         </ul>
                     </li>
+                    }
 
                 </ul>
 

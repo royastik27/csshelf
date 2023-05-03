@@ -28,6 +28,7 @@ app.use(cookieParser());
 // ROUTES
 app.post('/api/register', userController.register);
 app.post('/api/login', userController.login);
+app.post('/api/auth', userController.authorize);
 
 app.get('/api/notes', noteController.allNotes);
 
@@ -48,7 +49,7 @@ app.get('/*', (req, res) => {
 });
 
 // DATABASE AND SERVER
-const DB_URL = 'mongodb://localhost:27017/csshelf';
+const DB_URL = 'mongodb://127.0.0.1:27017/csshelf';
 
 mongoose.connect(DB_URL).then(() => {
     console.log('Database connected');

@@ -25,7 +25,7 @@ async function logIn(inp)
   }
 }
 
-function Login() {
+function Login({ setLoggedIn }) {
 
   const [ errorMessage, setErrorMessage ] = useState('');
 
@@ -41,9 +41,13 @@ function Login() {
       
       const res = await logIn(inp);
       setErrorMessage(res.message);
-      // set cookie
+
       if(res.ok)
-        localStorage.setItem('token', res.token);
+      {
+        localStorage.setItem('userName', inp.userName);
+        // change state
+        setLoggedIn(true);
+      }
   };
     
     return (
