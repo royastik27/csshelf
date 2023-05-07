@@ -55,17 +55,18 @@ exports.login = async (req, res) => {
     .then(async function (result) {
         if (result)
             if (await bcrypt.compare(req.body.password, result.password)) {
-                // WHEN TO brypt
-                console.log(result);
+                // console.log(result);
 
                 const user = {
                     userId: result._id,
                     userName: req.body.userName
-                };
+                };                
 
-                res.cookie('token', jwt.sign(user, process.env.ACCESS_TOKEN), { 
+                // IF YOU CHANGE HERE, MAKE CHANGE IN exports.logout()
+                res.cookie('token', jwt.sign(user, process.env.ACCESS_TOKEN), {
                     httpOnly: true,
-                    expires: new Date(Date.now() + 60000)
+                    path: '/',
+                    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
                 });
 
                 // res.redirect('/profile');
@@ -92,20 +93,44 @@ exports.login = async (req, res) => {
     });
 }
 
-exports.authorize = async (req, res) => {
+exports.authorize = async (req, res, next) => {
     
     const token = req.cookies.token;
+    // console.log(token);
 
     try {
         const decode = jwt.verify(token, process.env.ACCESS_TOKEN);
 
-        res.json({
-            ok: true,
-            userId: decode.userId,
-            userName: decode.userName
-        });
+        res.locals.userId = decode.userId;
+        res.locals.userName = decode.userName;
+
+        next();
     }
     catch(err) {
-        res.json({ ok: false });
+        res.json({
+            ok: false,
+            message: 'Authorization failed'
+        });
     }
+}
+
+exports.getUserDetails = (req, res) => {
+    res.json({
+        ok: true,
+        userId: res.locals.userId,
+        userName: res.locals.userName
+    });
+}
+
+exports.logout = (req, res) => {
+
+    res.clearCookie('token', {
+        httpOnly: true,
+        path: '/'
+    });
+    
+    res.json({
+        ok: true,
+        message: 'Logged out succesfully'
+    });
 }

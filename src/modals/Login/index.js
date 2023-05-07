@@ -59,12 +59,12 @@ function Login({ setLoggedIn }) {
 
               <div className="form-group">
                 <label>Username:</label>
-                <input name="userName" type="text" className="form-control" placeholder="Enter your CSSHELF username" required />
+                <input name="userName" defaultValue="buet_cse" type="text" className="form-control" placeholder="Enter your CSSHELF username" required />
               </div>
 
               <div className="form-group">
                 <label>Password:</label>
-                <input name="password" type="password" className="form-control" placeholder="Enter your CSSHELF password" required />
+                <input name="password" defaultValue="csebuet#@12B" type="password" className="form-control" placeholder="Enter your CSSHELF password" required />
               </div>
 
               <div className="form-group">

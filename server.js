@@ -28,7 +28,8 @@ app.use(cookieParser());
 // ROUTES
 app.post('/api/register', userController.register);
 app.post('/api/login', userController.login);
-app.post('/api/auth', userController.authorize);
+app.post('/api/getuserdetails', userController.authorize, userController.getUserDetails);
+app.post('/api/logout', userController.authorize, userController.logout);
 
 app.get('/api/notes', noteController.allNotes);
 

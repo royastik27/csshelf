@@ -53,7 +53,7 @@ function Signup() {
       // SEND DATA TO API
       const res = await register(inp);
       setErrorMessage(res.message);
-    }    
+    }
   }
     
   return (

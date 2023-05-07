@@ -1,8 +1,8 @@
 ### Request Astik
-POST http://localhost:5000/api/auth
+POST http://localhost:5000/api/login
 Content-Type: application/json
 Token: abasdfd
-Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDUyMjRmNDM5YTJhNTQwZTI2NzYyNjEiLCJ1c2VyTmFtZSI6ImJ1ZXRfY3NlIiwiaWF0IjoxNjgzMTEzNTEzfQ.MG0de9XTDIqqEG8oM6-_tAh3hx7GPNFITm2zZdK_JgM
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDUyMjRmNDM5YTJhNTQwZTI2NzYyNjEiLCJ1c2VyTmFtZSI6ImJ1ZXRfY3NlIiwiaWF0IjoxNjgzNDY2NDA0fQ.fg7s7Gctn9N9P3vFUYwrsQHJQANMZywWCWz_0gN4Jgo; Path=/; Expires=Sun, 07 May 2023 13:34:24 GMT; HttpOnly
 
 {
     "userName": "buet_cse",

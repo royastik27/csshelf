@@ -28,6 +28,28 @@ function App() {
   // console.log(cookies.token);
   useEffect(() => {
     console.log("hello useEffect");
+
+    async function isLoggedIn()
+    {
+      try {
+        const res = await fetch('http://localhost:5000/api/getuserdetails', {
+          method: "POST",
+          // mode: 'cors',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(inp)
+        });
+    
+        const output = await res.json();
+        return output;
+      }
+      catch (err) {
+        console.log(err);
+    
+        return { ok: false, message: 'Server problem!' };
+      }
+    }
   }, []);
 
   return (
