@@ -15,7 +15,7 @@ const noteController = require('./controllers/noteController');
 const app = express();
 const PORT = 5000;
 
-app.use(cors());
+app.use(cors());    // JUST FOR REACT APP, REMOVE AT PRODUCTION
 app.use(express.json());
 app.use(cookieParser());
 

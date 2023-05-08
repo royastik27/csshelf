@@ -115,6 +115,7 @@ exports.authorize = async (req, res, next) => {
 }
 
 exports.getUserDetails = (req, res) => {
+    console.log(req);
     res.json({
         ok: true,
         userId: res.locals.userId,

@@ -1,6 +1,5 @@
 import '@fontsource/roboto/300.css';
 import { useState, useEffect } from 'react';
-import { useCookies } from 'react-cookie';
 
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -15,19 +14,12 @@ import MainContent from './modals/js/MainContent';
 
 import './App.css';
 
-async function checkLogIn()
-{
-  
-}
-
 function App() {
 
   const [ loggedIn, setLoggedIn ] = useState(false);
 
-  // // MAY HAVE TO: cookie.token ? setLoggedIn = true
-  // console.log(cookies.token);
   useEffect(() => {
-    console.log("hello useEffect");
+    // console.log("hello useEffect");
 
     async function isLoggedIn()
     {
@@ -37,19 +29,23 @@ function App() {
           // mode: 'cors',
           headers: {
             'Content-type': 'application/json'
-          },
-          body: JSON.stringify(inp)
+          }
         });
     
         const output = await res.json();
-        return output;
+        
+        // console.log(output);
+
+        if(output.ok)
+          setLoggedIn(true);
       }
       catch (err) {
-        console.log(err);
-    
-        return { ok: false, message: 'Server problem!' };
+        // console.log(err);
+        console.log('Server problem: Cannot check previous login.');
       }
     }
+
+    isLoggedIn();
   }, []);
 
   return (
