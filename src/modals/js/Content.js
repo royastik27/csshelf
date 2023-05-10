@@ -25,7 +25,7 @@ function Content({ loggedIn, setLoggedIn }) {
             <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/profile" element={<Profile loggedIn={loggedIn}/>} />
-            <Route path="/logout" element={<Logout loggedIn={loggedIn}/>} />
+            <Route path="/logout" element={<Logout loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
         </div>

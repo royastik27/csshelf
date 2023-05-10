@@ -20,8 +20,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 // app.use((req, res, next) => {
-//     console.log(req.url);
+//     // console.log(req.url);
 //     console.log(req.cookies);
+//     console.log(typeof req.cookies);
 //     next();
 // })
 
@@ -33,8 +34,8 @@ app.post('/api/logout', userController.authorize, userController.logout);
 
 app.get('/api/notes', noteController.allNotes);
 
-function authorize(req, res, next) {
-    const token = req.headers;
+function authorize(req, res, next) { // IF token were a header
+    const token = req.headers.token;
     console.log(token);
     console.log(typeof token);
     next();

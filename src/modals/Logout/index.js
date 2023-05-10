@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
-function Logout({ loggedIn }) {
+function Logout({ loggedIn, setLoggedIn }) {
 
     const [ errorMessage, setErrorMessage ] = useState('');
+
+    const navigate = useNavigate();
 
     async function checkAuth()
     {
@@ -33,7 +36,11 @@ function Logout({ loggedIn }) {
             const output = await res.json();
 
             if(output.ok)
-                setErrorMessage('Logged out successfully!');
+            {
+                // setErrorMessage('Logged out successfully!');
+                setLoggedIn(false);
+                navigate('/', { replace: true });
+            }
             else
                 setErrorMessage(output.message);
         }
