@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './index.css';
 
@@ -29,6 +29,8 @@ function Login({ setLoggedIn }) {
 
   const [ errorMessage, setErrorMessage ] = useState('');
 
+  const navigate = useNavigate();
+
   async function handleSubmit(event) {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
@@ -40,14 +42,15 @@ function Login({ setLoggedIn }) {
       }
       
       const res = await logIn(inp);
-      setErrorMessage(res.message);
 
       if(res.ok)
       {
-        localStorage.setItem('userName', inp.userName);
-        // change state
+        // localStorage.setItem('userName', inp.userName); // session storage
         setLoggedIn(true);
+        navigate('/profile', { replace: true });
       }
+      else
+        setErrorMessage(res.message);
   };
     
     return (

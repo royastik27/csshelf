@@ -54,7 +54,8 @@ exports.login = async (req, res) => {
     })
     .then(async function (result) {
         if (result)
-            if (await bcrypt.compare(req.body.password, result.password)) {
+            if (await bcrypt.compare(req.body.password, result.password))
+            {
                 // console.log(result);
 
                 const user = {
@@ -77,12 +78,10 @@ exports.login = async (req, res) => {
                     // token: jwt.sign(user, process.env.ACCESS_TOKEN) // DONT SEND
                 });
             }
-
             else
-                res.status(200).json({ ok: true, message: 'Incorrect password' });
-
-        else
-            res.status(200).json({ ok: true, message: 'User not found!' });
+                res.status(200).json({ ok: false, message: 'Incorrect password' });
+        else // IF NO RESULT
+            res.status(200).json({ ok: false, message: 'User not found!' });
     })
     .catch(err => {
         console.log(err);

@@ -30,37 +30,41 @@ function Navbar({ loggedIn }) {
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li className="nav-item">
-                    <Link className="nav-link" to="/" onClick={makeLinkActive}>📚 HOME</Link>
+                    <Link className="nav-link" to="/">📚 HOME</Link>
                     </li>
 
                     <li className="nav-item">
-                    <Link className="nav-link" to="/notes" onClick={makeLinkActive}>📄 NOTES</Link>
+                    <Link className="nav-link" to="/notes">📄 NOTES</Link>
                     </li>
 
-                    <li className="nav-item">
-                    <Link className="nav-link" to="/create" onClick={makeLinkActive}>✍ CREATE</Link>
-                    </li>
+                    {loggedIn ?
+                        <>
+                            <li className="nav-item">
+                            <Link className="nav-link" to="/create">✍ CREATE</Link>
+                            </li>
 
-                    <li className="nav-item">
-                    <Link className="nav-link" to="/login" onClick={makeLinkActive}>👤 LOGIN</Link>
-                    </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ⚙ MY ACCOUNT
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
+                                    <li><Link className="dropdown-item" to="/mycollections">My Collections</Link></li>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li><Link className="dropdown-item" to="/logout">Log Out</Link></li>
+                                </ul>
+                            </li>
+                        </>
+                        :
+                        <>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/login">👤 LOGIN</Link>
+                            </li>
 
-                    <li className="nav-item">
-                    <Link className="nav-link" to="/signup" onClick={makeLinkActive}>📁 SIGNUP</Link>
-                    </li>
-
-                    {loggedIn && 
-                        <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            ⚙ MY ACCOUNT
-                        </a>
-                        <ul className="dropdown-menu">
-                            <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
-                            <li><Link className="dropdown-item" to="/mycollections">My Collections</Link></li>
-                            <li><hr className="dropdown-divider" /></li>
-                            <li><Link className="dropdown-item" to="/logout">Log Out</Link></li>
-                        </ul>
-                    </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/signup">📁 SIGNUP</Link>
+                            </li>
+                        </>
                     }
 
                 </ul>
