@@ -1,4 +1,3 @@
-+ Change navbar after login
 + LocalStorage or Session storage for userName
 + Remove material UI From create & notes
 + Change 📝 Notes to 🧭 Explore

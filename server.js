@@ -51,7 +51,7 @@ app.get('/*', (req, res) => {
 });
 
 // DATABASE AND SERVER
-const DB_URL = 'mongodb://127.0.0.1:27017/csshelf';
+const DB_URL = 'mongodb://127.0.0.1:27017/nshelf';
 
 mongoose.connect(DB_URL).then(() => {
     console.log('Database connected');
